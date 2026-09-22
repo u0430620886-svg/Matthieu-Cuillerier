@@ -1,0 +1,1463 @@
+/* =========================================================
+   Château de la Roseraie — feuille de style
+   ========================================================= */
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url('assets/fonts/BodoniModa-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/BodoniModa-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('assets/fonts/CormorantGaramond-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/CormorantGaramond-italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Beau Rivage';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/BeauRivage-400.woff2') format('woff2');
+}
+
+/* ---------- tokens ---------- */
+:root{
+  --rose:      #da5a52;
+  --rose-deep: #dd9d80;
+  --cream:     #f4eee6;
+  --yellow:    #e4de3a;
+  --dark:      #2a1d16;
+  --ink:       #4a3530;
+  --white:     #ffffff;
+  --script:    #ffffff;
+  --script-rose: #f2c9b6;
+
+  --font-display: 'Bodoni Moda', 'Times New Roman', Georgia, serif;
+  --font-body:    'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-script:  'Beau Rivage', cursive;
+
+  --container: 84rem;
+  --gap: clamp(1rem, 2.5vw, 2rem);
+  --ease: cubic-bezier(.22,.61,.15,.98);
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+h1,h2,h3,p{ margin:0; }
+button{ font:inherit; background:none; border:none; cursor:pointer; color:inherit; }
+figure{ margin:0; }
+
+::selection{ background:var(--ink); color:var(--cream); }
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--font-body);
+  font-size:.8rem;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  text-align:left;
+  color:rgba(74,53,48,.75);
+  margin-bottom:1.25rem;
+}
+.eyebrow--center{ text-align:center; margin-bottom:2rem; }
+.display-xl{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(2.6rem, 7vw, 6rem);
+  line-height:1.02;
+  letter-spacing:-.01em;
+  text-align:center;
+}
+.display-lg{
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(2rem, 4.4vw, 3.2rem);
+  line-height:1.1;
+}
+.lede{
+  max-width:44rem;
+  margin:2rem auto 0;
+  text-align:center;
+  font-size:clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height:1.6;
+  color:var(--ink);
+}
+.lede--light{ color:rgba(244,238,230,.9); }
+
+/* handwritten accents */
+.script-accent{
+  font-family:var(--font-script);
+  font-weight:400;
+  color:var(--script);
+  font-size:1.6em;
+  display:inline-block;
+  line-height:1;
+}
+/* handwritten words are simply "posé par-dessus" — a soft settle, never a spin */
+.script-accent.reveal-word{
+  opacity:0;
+  transform:scale(.94);
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.script-accent.reveal-word.is-visible{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* ---------- buttons ---------- */
+.btn-rect{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:40px;
+  padding:0 1.4rem;
+  border:1px solid var(--ink);
+  border-radius:4px;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:.74rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:background-color .3s var(--ease), color .3s var(--ease);
+}
+.btn-rect:hover{ background:var(--ink); color:var(--cream); }
+
+.btn-white{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:.8rem 1.9rem;
+  border:none;
+  border-radius:4px;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:.76rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  text-align:center;
+  transition:background-color .3s var(--ease), color .3s var(--ease);
+}
+.btn-white:hover{ background:var(--ink); color:var(--white); }
+
+/* ---------- header ---------- */
+.site-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  z-index:60;
+  height:74px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:0 clamp(16px, 3vw, 40px);
+  background:var(--white);
+  box-shadow:0 1px 0 rgba(74,53,48,.08);
+}
+.site-header .btn-menu{ justify-self:start; }
+.site-header .btn-reserve{ justify-self:end; }
+.site-header .logo{ grid-column:2; justify-self:center; }
+.logo{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  line-height:1;
+  color:var(--ink);
+}
+.logo-name{
+  font-family:var(--font-display);
+  font-size:1.2rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+}
+.logo-script{
+  font-family:var(--font-script);
+  font-size:1rem;
+  color:var(--rose-deep);
+  margin-top:2px;
+}
+
+/* ---------- off-canvas nav ---------- */
+.main-nav{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  width:min(420px, 88vw);
+  background:var(--ink);
+  color:var(--cream);
+  padding:120px 3rem 3rem;
+  transform:translateX(-102%);
+  transition:transform .6s var(--ease);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.main-nav.is-open{ transform:translateX(0); }
+.main-nav ul{ display:flex; flex-direction:column; gap:.4rem; }
+.main-nav li{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+  transition-delay:calc(var(--i) * 60ms);
+}
+.main-nav.is-open li{ opacity:1; transform:translateY(0); }
+.main-nav a{
+  font-family:var(--font-display);
+  font-size:1.9rem;
+  text-transform:uppercase;
+  letter-spacing:.02em;
+}
+.main-nav a:hover{ color:var(--rose); }
+.main-nav-foot{
+  font-size:.85rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(244,238,230,.55);
+}
+.nav-scrim{
+  position:fixed; inset:0; z-index:70;
+  background:rgba(42,29,22,.4);
+  backdrop-filter:blur(2px);
+  opacity:0; pointer-events:none;
+  transition:opacity .5s var(--ease);
+}
+.nav-scrim.is-open{ opacity:1; pointer-events:auto; }
+
+/* ---------- 1. hero ---------- */
+/* a normal, in-flow section — it occupies the full screen once, then
+   simply scrolls away like the rest of the page. no fixed/pinned tricks. */
+.hero{
+  position:relative;
+  height:100svh;
+  min-height:560px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--white);
+}
+.hero-media{ position:absolute; inset:0; }
+.hero-slide{
+  position:absolute; inset:0;
+  opacity:0;
+  transform:scale(1.06);
+  transition:opacity 1.8s ease, transform 8s linear;
+}
+.hero-slide.is-active{ opacity:1; transform:scale(1); }
+.hero-slide video, .hero-slide img{
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+}
+.hero-veil{
+  position:absolute; inset:0;
+  z-index:1;
+  background:linear-gradient(180deg, rgba(20,14,10,.4) 0%, rgba(20,14,10,.1) 30%, rgba(20,14,10,.2) 70%, rgba(20,14,10,.55) 100%);
+}
+.hero-content{
+  position:relative; z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2.2rem;
+  text-align:center;
+  padding-top:2rem;
+}
+.hero-title{
+  position:relative;
+  display:block;
+  width:min(94vw, 50rem);
+  height:clamp(3.6rem, 10vw, 7.5rem);
+}
+.hero-title-line{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--font-display);
+  font-weight:500;
+  font-style:normal;
+  text-transform:uppercase;
+  font-size:clamp(2.6rem, 9vw, 6.6rem);
+  letter-spacing:.14em;
+  text-shadow:0 2px 40px rgba(0,0,0,.3);
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity 1.1s ease, transform 1.1s var(--ease);
+}
+.hero-title-line.is-active{ opacity:1; transform:translateY(0); }
+
+.side-label{
+  position:absolute;
+  top:50%;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  color:var(--white);
+  writing-mode:vertical-rl;
+  font-size:.75rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  opacity:.85;
+  transition:opacity .35s var(--ease);
+}
+.side-label--left{ left:clamp(10px, 2.4vw, 34px); transform:translateY(-50%) rotate(180deg); }
+.side-label--right{ right:clamp(10px, 2.4vw, 34px); transform:translateY(-50%); }
+.side-label:hover{ opacity:1; }
+.side-label .side-arrow{ color:var(--rose); font-size:1rem; }
+
+.hero-caption{
+  position:absolute;
+  left:50%;
+  bottom:clamp(28px, 6vh, 64px);
+  transform:translateX(-50%);
+  z-index:2;
+  width:min(90vw, 40rem);
+  height:1.6em;
+  text-align:center;
+}
+.hero-caption-line{
+  position:absolute;
+  inset:0;
+  font-family:var(--font-body);
+  font-style:italic;
+  font-size:1.05rem;
+  opacity:0;
+  transition:opacity 1.2s ease;
+}
+.hero-caption-line.is-active{ opacity:1; }
+
+.scroll-cue{
+  position:absolute; z-index:2; bottom:14px; left:50%;
+  transform:translateX(-50%);
+  width:1px; height:32px;
+  background:rgba(255,255,255,.4);
+  overflow:hidden;
+}
+.scroll-cue span{
+  position:absolute; left:0; top:-100%; width:100%; height:100%;
+  background:var(--white);
+  animation:scrollcue 2.2s ease-in-out infinite;
+}
+@keyframes scrollcue{ 0%{ top:-100%; } 60%{ top:100%; } 100%{ top:100%; } }
+
+/* ---------- scroll-linked color wrapper ---------- */
+/* one fixed layer, behind everything, whose color is driven by scroll
+   position across the whole rose/crème/jaune journey (see script.js) */
+.bg-tint{ position:fixed; inset:0; z-index:-1; background-color:var(--rose); }
+
+/* ---------- reveal helpers ---------- */
+.reveal-up{
+  opacity:0;
+  transform:translateY(36px);
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.reveal-up.is-visible{ opacity:1; transform:translateY(0); }
+
+.fade-in{ opacity:0; transition:opacity 1.1s var(--ease); }
+.fade-in.is-visible{ opacity:1; }
+
+/* "monte" — a plain cinematic rise, used for the garden bands, the café
+   block, the mosaic and the experiences title: everything stays where it
+   is horizontally, it simply lifts into place as it enters. */
+.rise-in{
+  --ry:32px;
+  opacity:0;
+  transition:opacity 1s var(--ease), transform 1s var(--ease);
+  transform:translateY(var(--ry,0px));
+}
+.rise-in.is-visible{ --ry:0px; opacity:1; }
+
+.slide-in-left{
+  --sx:-90px;
+  opacity:0;
+  transition:opacity 1s var(--ease), transform 1s var(--ease);
+  transform:translate3d(var(--sx,0px), var(--py,0px), 0) rotate(var(--rot,0deg));
+}
+.slide-in-left.is-visible{ --sx:0px; opacity:1; }
+.slide-in-right{
+  --sx:90px;
+  opacity:0;
+  transition:opacity 1s var(--ease), transform 1s var(--ease);
+  transform:translate3d(var(--sx,0px), var(--py,0px), 0) rotate(var(--rot,0deg));
+}
+.slide-in-right.is-visible{ --sx:0px; opacity:1; }
+
+/* continuous scroll-parallax (img/video, JS-driven custom props) */
+img[data-parallax-y], img[data-parallax-x],
+video[data-parallax-y], video[data-parallax-x]{
+  transform:translate3d(var(--px,0px), var(--py,0px), 0);
+  will-change:transform;
+}
+
+/* ---------- 2. manifeste rose ---------- */
+.manifesto{
+  position:relative;
+  min-height:120vh;
+  overflow:visible;
+  /* dégage le header fixe (74px) puis pose le surtitre en flux normal :
+     il ne peut plus jamais se superposer au titre, qui vient après lui. */
+  padding-top:clamp(110px, 16vh, 190px);
+}
+
+/* haut centre — BIENVENUE AU CHÂTEAU — en flux normal, AVANT le titre,
+   toujours dans le fond rose (jamais sur la vidéo du hero) */
+.manifesto-eyebrow{
+  position:relative;
+  z-index:3;
+  text-align:center;
+  font-family:var(--font-body);
+  font-size:clamp(14px,1.1vw,16px);
+  letter-spacing:.35em;
+  text-transform:uppercase;
+  color:#f6e6dc;
+  transition:opacity .5s ease, transform .5s ease;
+}
+.manifesto-eyebrow.is-left{ opacity:0; transform:translateY(-80px); }
+
+/* vraie respiration entre le surtitre et le grand titre */
+.manifesto-titles{
+  position:relative;
+  margin-top:9vh;
+  margin-left:2%;
+  margin-right:3%;
+  transition:opacity .5s ease, transform .5s ease;
+}
+.manifesto-titles.is-left{ opacity:0; transform:translateY(-80px); }
+
+.manifesto-title{
+  font-family:var(--font-display);
+  font-weight:500;
+  line-height:.88;
+  letter-spacing:-.015em;
+  text-transform:uppercase;
+}
+.manifesto-title--ghost{
+  position:absolute;
+  top:10px; left:20px;
+  z-index:0;
+  color:#f3d5c8;
+  opacity:.18;
+  font-size:clamp(85px, 10vw, 165px);
+  pointer-events:none;
+  user-select:none;
+}
+.manifesto-title--front{
+  position:relative;
+  z-index:1;
+  color:#1f1a16;
+  font-size:clamp(85px, 10vw, 165px);
+}
+
+/* chaque ligne contrôle sa propre position — pas de text-align uniforme */
+.title-line{ display:block; white-space:nowrap; }
+.line-1{ margin-left:0; }
+.line-2{ margin-left:10%; }
+.line-3{ margin-left:0; width:100%; }
+
+/* "cœur" — élément séparé, APRÈS le titre, jamais superposé aux lettres */
+.coeur-mark{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:fit-content;
+  margin:2.25rem 8% 0 auto;
+  text-transform:none;
+}
+.coeur-dot{
+  width:10px; height:10px;
+  border-radius:50%;
+  background:#f6e6dc;
+  flex:0 0 auto;
+}
+.script-accent--coeur{
+  font-family:var(--font-script);
+  font-size:clamp(52px,5vw,66px);
+  color:#fdf6ef;
+  line-height:1;
+  transform:rotate(-7deg);
+  display:inline-block;
+}
+
+/* wrapper qui sert d'ancre exacte aux deux photos : le paragraphe est son
+   SEUL contenu en flux, donc top:0 sur la photo-a = top du paragraphe, et
+   top:100% sur la photo-b = bas du paragraphe, sans aucun décalage deviné. */
+.manifesto-lower{
+  position:relative;
+  margin-top:3.5rem;
+  min-height:175vh;
+}
+/* bloc éditorial : plus bas, plus large de contenu, davantage d'air */
+.manifesto-copy{
+  position:relative;
+  z-index:1;
+  margin:0 8% 0 auto;
+  width:clamp(230px, 20vw, 290px);
+  text-align:left;
+  font-family:var(--font-body);
+  font-weight:600;
+  font-size:clamp(16px,1.1vw,18px);
+  line-height:1.55;
+  color:#1a1512;
+  transition:opacity .5s ease, transform .5s ease;
+}
+.manifesto-copy.is-left{ opacity:0; transform:translateY(-80px); }
+
+@media(max-width:719px){
+  .manifesto{ min-height:auto; padding-bottom:4rem; }
+  .manifesto-titles{ margin-top:18vh; margin-right:5%; }
+  .title-line{ white-space:normal; }
+  .line-2{ margin-left:4%; }
+  .coeur-mark{ margin:1.5rem 4% 0 auto; }
+  .manifesto-copy{ width:auto; max-width:80%; margin:2rem 6% 0 auto; }
+}
+
+/* ---------- 3. collage éditorial — plan 2 : exactement 2 photos ---------- */
+/* les deux photos sont ancrées sur .manifesto-lower (position:relative),
+   en absolu, tailles et ratios réglés directement (pas de grille, pas de
+   gap fixe). */
+.transition-photo{
+  position:absolute;
+  opacity:0;
+  transition:opacity .9s var(--ease), transform .9s var(--ease);
+}
+.transition-photo img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter:saturate(1.08) contrast(1.04) brightness(1.02);
+}
+/* photo-primary : grande, verticale, gauche — remontée au niveau du
+   paragraphe, hauteur augmentée de 50% */
+.transition-photo--a{
+  left:7%;
+  top:0;
+  width:40vw;
+  height:105vh;
+  --ty:40px;
+  transform:translateY(var(--ty,0px));
+}
+/* photo-secondary : un pourcentage de top ne peut pas se résoudre contre
+   .manifesto-lower (dont la hauteur dépend de son contenu, pas fixée) —
+   donc au lieu de position:absolute, la photo reste dans le FLUX normal,
+   juste après le paragraphe : sa position verticale est alors exacte par
+   construction, avec seulement 40px d'écart via margin-top. */
+.transition-photo--b{
+  position:relative;
+  margin:40px 9% 0 auto;
+  width:32.5vw;
+  height:80vh;
+  --ty:40px;
+  transform:translateY(var(--ty,0px));
+}
+.transition-photo.is-visible{ opacity:1; --ty:0px; }
+
+@media(max-width:719px){
+  .manifesto-lower{ min-height:130vh; margin-top:2rem; }
+  .transition-photo--a{ width:62vw; height:78vh; top:0; }
+  .transition-photo--b{ width:52vw; height:59vh; margin:24px 6% 0 auto; }
+}
+
+/* ---------- 4. chambres & suites — composition éditoriale ---------- */
+/* fond ivoire chaud, propre à cette section, sans toucher --cream utilisé
+   ailleurs sur des fonds différents. */
+.rooms-editorial{
+  background:#f4f1e9;
+  position:relative;
+  padding:clamp(6rem,10vw,9rem) clamp(1.25rem,6vw,4rem) clamp(8rem,14vw,11rem);
+  overflow:visible;
+}
+.rooms-kicker{
+  text-align:center;
+  font-family:var(--font-display);
+  font-size:.8rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#241d18;
+  margin-bottom:clamp(7rem,13vw,11rem);
+}
+.rooms-composition{ position:relative; max-width:1400px; margin:0 auto; }
+
+.rooms-headline{
+  font-family:var(--font-display);
+  font-weight:500;
+  text-transform:uppercase;
+  line-height:.85;
+  letter-spacing:-.01em;
+  color:#1a1512;
+}
+.rooms-headline--top{
+  font-size:clamp(64px, 8.3vw, 140px);
+  margin:0;
+}
+
+/* "UNE AUTRE" et "idée" partagent la même ligne de base — même niveau de
+   lecture, "idée" agrandie et légèrement décalée à droite */
+.rooms-title-row{
+  display:flex;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  column-gap:clamp(3rem, 7vw, 6rem);
+  margin-left:8%;
+}
+.rooms-idea{
+  display:block;
+  width:fit-content;
+  color:#d6645a;
+  font-size:clamp(75px, 8.5vw, 115px);
+  line-height:1;
+  margin-left:clamp(1rem, 4vw, 3rem);
+  transform:rotate(-4deg);
+  margin-bottom:.12em;
+}
+
+/* la photo commence nettement SOUS "UNE AUTRE" — pas de chevauchement
+   avec le titre ; seul "DU" chevauche la photo, plus bas.
+   flex-wrap:nowrap est CRITIQUE : la photo et le bloc LUXE doivent
+   toujours rester sur la même ligne (même écran desktop), quitte à ce
+   que les deux flex-items rétrécissent proportionnellement — jamais un
+   retour à la ligne qui enverrait LUXE sous la photo. Le passage en
+   colonne empilée se fait uniquement via flex-direction:column dans le
+   media query mobile plus bas. */
+.rooms-body{
+  display:flex;
+  align-items:flex-start;
+  flex-wrap:nowrap;
+  gap:clamp(2.5rem, 5vw, 6rem);
+  margin-top:clamp(3rem, 6vh, 5rem);
+}
+
+.rooms-visual-wrap{
+  flex:0 1 clamp(620px, 55vw, 880px);
+  margin-left:9%;
+}
+/* cadre = juste la photo (overflow:hidden pour le crossfade) + la signature ;
+   la légende est un frère à l'extérieur, donc les % de la signature ne sont
+   jamais faussés par la hauteur du texte de légende */
+.rooms-frame{ position:relative; }
+.rooms-visual{
+  position:relative;
+  width:100%;
+  aspect-ratio:1.22/1;
+  overflow:hidden;
+  background:#e7e1d4;
+}
+.rooms-slide{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .8s ease;
+}
+.rooms-slide.is-active{ opacity:1; }
+
+/* "DU" — centré vers la moitié droite de la photo, dépasse légèrement à
+   droite, posé au niveau du milieu vertical de l'image */
+.rooms-word-du{
+  position:absolute;
+  z-index:3;
+  top:34%;
+  left:42%;
+  transform:translateY(-50%);
+  font-size:clamp(90px, 11vw, 170px);
+  text-shadow:0 2px 30px rgba(244,241,233,.5);
+}
+
+/* signature Château — trait seul, aucun fond, chevauche le coin BAS-gauche
+   de la photo : environ la moitié sur la photo, la moitié sur l'ivoire */
+.rooms-signature{
+  position:absolute;
+  z-index:4;
+  top:auto;
+  bottom:-19%;
+  left:-11%;
+  width:clamp(109px, 11.4vw, 183px);
+  height:auto;
+  color:#d6645a;
+  pointer-events:none;
+}
+
+.rooms-caption{
+  margin:1.4rem 4% 0 0;
+  text-align:right;
+  font-family:var(--font-script);
+  font-size:clamp(1.3rem, 2vw, 1.7rem);
+  color:#1a1512;
+  transition:opacity .4s ease;
+}
+.rooms-caption.is-fading{ opacity:0; }
+
+/* colonne de droite : LUXE + paragraphe + bouton forment UN SEUL bloc
+   (.rooms-right-content), positionné en absolu à la MÊME hauteur exacte
+   que "DU" — même formule (largeur clamp + ratio) que la photo, donc le
+   haut de LUXE tombe pile au niveau de "DU", sur le fond ivoire, sans
+   jamais toucher aux distances internes entre les trois éléments. */
+/* largeur fixe (pas flex-grow:1 qui l'étirait jusqu'au bord de la page) +
+   margin:0 auto pour centrer la colonne dans l'espace restant entre la
+   photo et le bord droit de la page, au lieu de coller LUXE au bord. */
+.rooms-side{
+  position:relative;
+  flex:0 0 auto;
+  width:clamp(340px, 34vw, 520px);
+  margin:0 auto;
+}
+.rooms-right-content{
+  position:absolute;
+  top:calc(clamp(620px, 55vw, 880px) * .10);
+  left:0;
+  right:0;
+}
+.rooms-word-luxe{
+  display:block;
+  font-size:clamp(84px, 10.4vw, 158px);
+}
+
+.rooms-copy{ margin-top:clamp(1.8rem, 3.6vw, 2.8rem); max-width:250px; }
+.rooms-copy p{
+  font-family:var(--font-body);
+  font-size:1.05rem;
+  line-height:1.6;
+  color:#1a1512;
+}
+.rooms-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:2rem;
+  height:46px;
+  padding:0 1.8rem;
+  border:1px solid #1a1512;
+  border-radius:2px;
+  background:transparent;
+  color:#1a1512;
+  font-family:var(--font-body);
+  font-size:.76rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transition:background-color .3s var(--ease), color .3s var(--ease);
+}
+.rooms-btn:hover{ background:#1a1512; color:#f4f1e9; }
+
+@media(max-width:900px){
+  .rooms-title-row{ margin-left:6%; }
+  .rooms-idea{ font-size:clamp(50px,14vw,80px); }
+  .rooms-body{ flex-direction:column; margin-top:2.5rem; }
+  .rooms-visual-wrap{ flex:1 1 auto; width:min(78vw, 480px); margin-left:6%; }
+  .rooms-side{ margin-top:3rem; width:100%; }
+  .rooms-right-content{ position:static; top:auto; }
+  .rooms-word-du{ font-size:clamp(70px,18vw,120px); }
+  .rooms-word-luxe{ font-size:clamp(64px,16vw,110px); }
+  .rooms-signature{ width:69px; bottom:-14%; left:-9%; }
+}
+
+/* ---------- 4bis. respiration photographique — jardin plein écran ---------- */
+.garden-feature{
+  position:relative;
+  width:100%;
+  height:100vh;
+  overflow:hidden;
+}
+.garden-feature-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 45%;
+  display:block;
+  filter:saturate(1.08) contrast(1.04) brightness(1.02);
+}
+/* portrait cintré, centré, sans cadre — juste posé sur le fond */
+.garden-feature-portrait{
+  position:absolute;
+  left:50%;
+  top:6vh;
+  transform:translateX(-50%);
+  width:clamp(380px, 32vw, 620px);
+  height:calc(100% - 12vh);
+  overflow:hidden;
+  border-radius:50% 50% 0 0 / 18% 18% 0 0;
+}
+.garden-feature-portrait img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+@media(max-width:719px){
+  .garden-feature{ height:92vh; }
+  .garden-feature-portrait{ width:min(78vw, 460px); top:5vh; height:calc(100% - 10vh); }
+}
+
+/* ---------- 5. restaurant corail — composition typographique monumentale :
+   GASTRONOMIE (surtitre) + LE PLAISIR / N'EST PAS + photo + UN DÉTAIL +
+   paragraphe + CTA, une seule architecture graphique, pas une grille. ---------- */
+.restaurant{
+  position:relative;
+  padding:clamp(5rem,10vw,7rem) clamp(1.25rem,6vw,4rem) clamp(6rem,11vw,9rem);
+}
+.restaurant-l{
+  position:relative;
+  max-width:100rem;
+  margin:0 auto;
+}
+.restaurant-eyebrow{
+  color:rgba(255,255,255,.85);
+  margin-bottom:0;
+  font-size:1.2rem;
+  font-weight:600;
+}
+.restaurant-title{ margin:1.5rem 0 0; }
+.restaurant-title-line{
+  display:block;
+  white-space:nowrap;
+  font-family:var(--font-display);
+  font-weight:500;
+  text-transform:uppercase;
+  line-height:.9;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  font-size:clamp(60px, 9vw, 165px);
+}
+.restaurant-photo{
+  position:relative;
+  margin:2rem auto 0;
+  width:min(88vw, 480px);
+  aspect-ratio:.68;
+  overflow:hidden;
+}
+.restaurant-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+/* légende manuscrite sous la photo, coin bas-droite, écriture volontairement
+   maladroite/enfantine (rotation + inclinaison marquées) */
+.restaurant-photo-caption{
+  display:block;
+  margin:.75rem auto 0;
+  width:min(88vw, 480px);
+  text-align:right;
+  color:var(--white);
+  font-size:1.6rem;
+  transform:rotate(-7deg) skewX(-8deg);
+}
+.restaurant-title-line--3{
+  margin-top:2rem;
+  font-size:clamp(56px, 8.5vw, 155px);
+  text-align:right;
+}
+.restaurant-copy{
+  margin:2.5rem auto 0;
+  max-width:28rem;
+  font-size:1.05rem;
+  font-weight:600;
+  line-height:1.7;
+  color:var(--ink);
+}
+.restaurant-cta{ margin-top:1.75rem; }
+
+@media(min-width:960px){
+  .restaurant-l{ min-height:155vh; }
+  .restaurant-eyebrow{
+    position:absolute;
+    top:0; left:0; width:100%;
+    text-align:center;
+  }
+  .restaurant-title{ margin:0; }
+  .restaurant-title-line--1{ position:absolute; left:3vw; top:11vh; margin:0; }
+  .restaurant-title-line--2{ position:absolute; left:3vw; top:28vh; margin:0; }
+  /* hauteur agrandie de 75%, uniquement vers le bas : le haut (top:41vh)
+     et la largeur ne bougent pas */
+  /* hauteur réduite : coupée uniquement en bas, jusqu'au niveau du bouton
+     "Voir nos espaces" — le haut (top:41vh) ne bouge pas */
+  .restaurant-photo{
+    position:absolute;
+    left:10vw; top:41vh;
+    width:36vw; height:72vh;
+    margin:0; aspect-ratio:auto;
+  }
+  .restaurant-photo-caption{
+    position:absolute;
+    left:46vw;
+    top:calc(41vh + 72vh + 1rem);
+    width:auto;
+    margin:0;
+    transform:translateX(-100%) rotate(-7deg) skewX(-8deg);
+  }
+  .restaurant-title-line--3{
+    position:absolute;
+    left:44vw; top:47vh;
+    margin:0;
+    text-align:left;
+  }
+  .restaurant-copy{
+    position:absolute;
+    left:74vw; top:calc(69vh - 52px);
+    width:clamp(230px,16vw,280px);
+    max-width:none;
+    margin:0;
+  }
+}
+
+/* ---------- 6. café + bar — deux photos verticales avec léger
+   chevauchement de coin (bar au premier plan, en bas-gauche du café) ---------- */
+.cafe{
+  position:relative;
+  padding:clamp(3rem,6vw,4rem) clamp(1.25rem,6vw,4rem) clamp(6rem,11vw,9rem);
+}
+.cafe-block{ position:relative; }
+.cafe-cafe-photo{
+  position:relative;
+  z-index:1;
+  margin:0 auto;
+  width:100%;
+  max-width:520px;
+  aspect-ratio:.72;
+  overflow:hidden;
+}
+.cafe-cafe-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.cafe-caption-cafe{
+  display:block;
+  position:relative;
+  z-index:1;
+  text-align:right;
+  margin-top:1rem;
+  color:#fff8ee;
+  font-size:clamp(1.4rem,2.6vw,1.9rem);
+  transform:rotate(-2deg);
+}
+/* .reveal-word impose son propre transform:scale() au même niveau de
+   spécificité — un sélecteur composé plus spécifique compose scale ET
+   rotation dans une seule déclaration, pour que la rotation survive à
+   l'animation d'apparition plutôt que d'être écrasée. */
+.cafe-caption-cafe.reveal-word{ transform:scale(.94) rotate(-2deg); }
+.cafe-caption-cafe.reveal-word.is-visible{ transform:scale(1) rotate(-2deg); }
+.cafe-bar{
+  position:relative;
+  z-index:2;
+  margin:2.5rem auto 0;
+  width:100%;
+  max-width:640px;
+  aspect-ratio:.74;
+  overflow:hidden;
+}
+.cafe-bar img{ width:100%; height:100%; object-fit:cover; display:block; }
+.script-accent--cafe{
+  display:block;
+  position:relative;
+  z-index:2;
+  text-align:left;
+  margin-top:1.4rem;
+  color:#fff8ee;
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  transform:rotate(2deg) skewX(-3deg);
+}
+.script-accent--cafe.reveal-word{ transform:scale(.94) rotate(2deg) skewX(-3deg); }
+.script-accent--cafe.reveal-word.is-visible{ transform:scale(1) rotate(2deg) skewX(-3deg); }
+
+@media(min-width:960px){
+  /* remonte le groupe entier (2 photos + 2 légendes) d'un seul bloc — les
+     top:/left:/tailles internes ci-dessous restent identiques, seule la
+     position de départ de la section change */
+  .cafe{ min-height:172vh; margin-top:calc(-18vh - 258px); }
+  .cafe-cafe-photo{
+    position:absolute;
+    z-index:1;
+    left:60vw; top:0;
+    width:30vw; max-width:none;
+    height:66vh;
+    margin:0;
+  }
+  .cafe-caption-cafe{
+    position:absolute;
+    z-index:1;
+    left:60vw; width:30vw;
+    top:calc(66vh + 1.6rem);
+    margin:0;
+  }
+  /* premier plan : chevauche légèrement le coin bas-gauche de la photo café */
+  .cafe-bar{
+    position:absolute;
+    z-index:2;
+    left:29vw; top:58vh;
+    width:37vw; max-width:none;
+    height:82vh;
+    margin:0;
+  }
+  .script-accent--cafe{
+    position:absolute;
+    z-index:2;
+    left:29vw;
+    top:calc(58vh + 82vh + 1.2rem);
+    margin:0;
+  }
+}
+
+/* ---------- 7. expériences crème — collage éditorial ---------- */
+.experiences{
+  position:relative;
+  background:#f7f1e9;
+  padding:clamp(5rem,11vw,8rem) clamp(1.25rem,6vw,4rem) clamp(4rem,8vw,6rem);
+}
+.experiences > .eyebrow{
+  text-align:center;
+  font-size:1.05rem;
+  letter-spacing:.28em;
+  color:#4a3530;
+}
+.exp-title-block{
+  position:relative;
+  max-width:100rem;
+  margin:1.5rem auto 0;
+}
+.exp-word{
+  display:block;
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:clamp(3rem, 9.6vw, 7.2rem);
+  line-height:.85;
+  letter-spacing:-.01em;
+  color:#3b2a25;
+}
+.exp-word--2{ margin-top:-.05em; padding-left:4vw; }
+.exp-word--3{ margin-top:.4em; padding-left:8vw; }
+.exp-word--4{ margin-top:.2em; padding-left:14vw; color:#d99573; }
+.exp-word-photo{
+  position:relative;
+  margin:2rem auto 0;
+  width:min(88vw, 500px);
+  aspect-ratio:.68;
+  overflow:hidden;
+}
+.exp-word-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.exp-copy{
+  position:relative;
+  margin:clamp(2.5rem,6vw,4rem) auto 0;
+  max-width:26rem;
+  text-align:left;
+  font-size:1.15rem;
+  color:#392b27;
+  line-height:1.65;
+}
+
+/* collage libre : au-delà de 1200px, les 4 mots + la photo + le texte
+   partagent tous la même ancre (.exp-title-block, position:relative) —
+   c'est ce qui permet le chevauchement volontaire mots/photo. En dessous,
+   tout redevient un flux vertical simple (titre → photo → texte). */
+@media(min-width:1200px){
+  .exp-title-block{ min-height:112vh; }
+  .exp-word{ font-size:clamp(4rem, 10.5vw, 150px); z-index:3; }
+  .exp-word--1{ position:absolute; left:0; top:0; margin:0; }
+  .exp-word--2{ position:absolute; left:18vw; top:14vh; margin:0; padding:0; }
+  .exp-word--3{ position:absolute; left:28vw; top:30vh; margin:0; padding:0; }
+  .exp-word--4{ position:absolute; left:56vw; top:30vh; margin:0; padding:0; }
+  /* descendue sous "rythme,", décalée à gauche, hauteur réduite en
+     conséquence pour rester bien proportionnée */
+  .exp-word-photo{
+    position:absolute;
+    z-index:2;
+    left:calc(25vw - 57px); top:32vh;
+    width:clamp(500px,34vw,650px);
+    height:clamp(500px,58vh,680px);
+    margin:0; aspect-ratio:auto;
+  }
+  .exp-copy{
+    position:absolute;
+    z-index:1;
+    left:64vw; top:55vh;
+    width:clamp(300px,22vw,390px);
+    max-width:none;
+    margin:0;
+  }
+}
+
+/* ---------- 8. mosaïque ---------- */
+.exp-mosaic{
+  position:relative;
+  max-width:78rem;
+  margin:clamp(5rem,10vw,8rem) auto 0;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:1rem;
+}
+.exp-mosaic img{ width:100%; height:100%; object-fit:cover; display:block; }
+.mosaic-a{ grid-column:1/5; aspect-ratio:3/4.6; align-self:start; }
+.mosaic-b{ grid-column:5/13; aspect-ratio:16/7; align-self:center; margin-top:4rem; }
+.mosaic-c{ grid-column:9/13; aspect-ratio:4/5; align-self:end; margin-top:1rem; }
+
+@media(max-width:819px){
+  .exp-mosaic{ grid-template-columns:1fr 1fr; }
+  .mosaic-a{ grid-column:1/3; aspect-ratio:16/11; margin-top:0; }
+  .mosaic-b{ grid-column:1/3; aspect-ratio:16/9; margin-top:1.5rem; }
+  .mosaic-c{ grid-column:1/2; aspect-ratio:4/5; margin-top:1.5rem; }
+}
+
+/* ---------- 9. spa ---------- */
+.spa{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:clamp(4rem,8vw,6rem) 1.5rem;
+  color:var(--cream);
+  text-align:center;
+}
+.spa-bg{ position:absolute; inset:0; z-index:0; }
+.spa-bg img{ width:100%; height:100%; object-fit:cover; filter:brightness(.44) saturate(1.05); }
+.spa .eyebrow{ position:relative; z-index:1; text-align:center; color:rgba(244,238,230,.85); }
+.spa-arch{
+  position:relative; z-index:1;
+  margin:.5rem auto 1.5rem;
+  width:clamp(230px,34vw,420px);
+  height:clamp(310px,44vw,540px);
+  border-radius:50% 50% 6px 6px / 30% 30% 6px 6px;
+  overflow:hidden;
+  clip-path:inset(0 0 0 0 round 50% 50% 6px 6px / 30% 30% 6px 6px);
+}
+/* the arch shape never moves — only the water inside breathes */
+.spa-arch img{
+  width:100%; height:100%; object-fit:cover;
+  animation:spaLive 16s ease-in-out infinite;
+}
+@keyframes spaLive{
+  0%, 100%{ transform:scale(1); }
+  50%{ transform:scale(1.06); }
+}
+
+/* ---------- 10. instagram jaune ---------- */
+/* fond doré opaque : couvre le tint JS (jaune fluo) avec le jaune
+   moutarde/safran voulu, cohérent avec le reste du site */
+.social{
+  position:relative;
+  min-height:105vh;
+  background:#e8b92f;
+  padding:clamp(6rem,10vw,8rem) clamp(1.25rem,6vw,4rem) clamp(4rem,8vw,6rem);
+  overflow:hidden;
+}
+.social-handle{
+  position:relative;
+  z-index:3;
+  margin:0 0 0 41%;
+  width:fit-content;
+  font-family:var(--font-body);
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:clamp(15px,1.3vw,20px);
+  color:#ef6e70;
+}
+.social-word{
+  position:relative;
+  z-index:2;
+  display:block;
+  width:fit-content;
+  font-family:var(--font-display);
+  font-weight:500;
+  text-transform:uppercase;
+  line-height:.85;
+  letter-spacing:-.01em;
+  color:#241a15;
+  font-size:clamp(64px, 9.5vw, 140px);
+}
+.social-word--suivez{ margin:1.5rem 0 0; }
+.social-word--nous{ margin:8vh 0 0 34%; }
+/* les 5 photos : dispersées, tailles et rotations différentes, jamais
+   alignées — c'est le désordre maîtrisé qui fait le collage. La rotation
+   passe par --rot (custom property) pour pouvoir se composer avec le
+   translateX du défilement horizontal au scroll dans UNE seule règle
+   (sinon le second transform écraserait le premier). */
+.social-photo{ position:relative; z-index:1; overflow:hidden; --rot:0deg; }
+.social-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.social-photo[data-parallax-x]{
+  transform:translate3d(var(--px,0px), 0, 0) rotate(var(--rot,0deg));
+  will-change:transform;
+}
+.social-photo--1{ width:min(60vw,300px); aspect-ratio:.92; margin:3rem 0 0 4%; --rot:-2deg; }
+.social-photo--2{ width:min(66vw,340px); aspect-ratio:.72; margin:2.5rem 0 0 14%; }
+.social-photo--3{ width:min(58vw,290px); aspect-ratio:1; margin:2.5rem 0 0 auto; margin-right:6%; --rot:1.4deg; }
+.social-photo--4{ width:min(52vw,250px); aspect-ratio:1; margin:2rem 0 0 30%; --rot:-1.2deg; }
+.social-photo--5{ width:min(50vw,240px); aspect-ratio:.76; margin:2rem 6% 0 auto; --rot:2deg; }
+.social-insta{
+  position:relative;
+  z-index:3;
+  display:block;
+  width:fit-content;
+  margin:3rem 8% 0 auto;
+  color:#ef6e70;
+  font-size:clamp(52px,7vw,95px);
+  transform:rotate(-3deg) skewX(-5deg);
+}
+
+@media(min-width:1200px){
+  .social-handle{ position:absolute; left:41vw; top:17%; margin:0; }
+  .social-word--suivez{ position:absolute; left:4.5vw; top:12%; margin:0; }
+  .social-word--nous{ position:absolute; left:35vw; top:42%; margin:0; }
+  .social-photo--1{ position:absolute; left:7%; top:34%; width:16vw; margin:0; }
+  .social-photo--2{ position:absolute; left:25%; top:48%; width:20vw; margin:0; transform:none; }
+  .social-photo--3{ position:absolute; left:61%; top:26%; width:17vw; margin:0; }
+  .social-photo--4{ position:absolute; left:48%; top:64%; width:15vw; margin:0; }
+  .social-photo--5{ position:absolute; right:4%; top:33%; width:15vw; margin:0; }
+  .social-insta{ position:absolute; right:7%; bottom:12%; margin:0; }
+}
+
+@media(max-width:719px){
+  .social{ min-height:auto; }
+  .social-handle{ margin-left:0; }
+  .social-word--nous{ margin-left:0; }
+  .social-photo--1, .social-photo--2, .social-photo--3, .social-photo--4, .social-photo--5{
+    width:70vw; margin-left:auto; margin-right:auto; --rot:0deg;
+  }
+  .social-insta{ margin-left:auto; }
+}
+
+/* ---------- 11. cta ---------- */
+.cta{
+  position:relative;
+  padding:clamp(5rem,11vw,8rem) 1.5rem;
+  text-align:center;
+}
+.cta-title{
+  font-family:var(--font-display);
+  font-size:clamp(3.4rem,9vw,6.4rem);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.cta .script-accent{ font-size:clamp(2.2rem,5vw,3.4rem); color:var(--rose-deep); margin-top:-.4rem; }
+.cta-btn{ display:flex; margin:2.25rem auto 0; width:fit-content; }
+.cta-logo{
+  display:block;
+  width:clamp(70px, 8vw, 110px);
+  height:auto;
+  margin:2.5rem auto 0;
+  color:var(--rose-deep);
+}
+
+/* ---------- 12. newsletter + footer ---------- */
+.newsletter{
+  position:relative;
+  color:var(--white);
+  padding:clamp(4rem,10vw,7rem) clamp(1.25rem,5vw,4rem);
+  overflow:hidden;
+}
+.newsletter-bg{ position:absolute; inset:0; z-index:0; }
+.newsletter-bg img{ width:100%; height:100%; object-fit:cover; filter:brightness(.4) saturate(1.05); }
+.newsletter-inner{
+  position:relative; z-index:1;
+  max-width:var(--container);
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:2.5rem;
+}
+.newsletter-copy h3{ color:var(--white); }
+.newsletter-form{ display:flex; flex-wrap:wrap; gap:1.25rem; align-items:center; }
+.newsletter-form input{
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,.45);
+  color:var(--white);
+  padding:.7rem .1rem;
+  font-family:var(--font-body);
+  font-size:1.05rem;
+  flex:1 1 200px;
+  min-width:0;
+}
+.newsletter-form input::placeholder{ color:rgba(255,255,255,.6); }
+.newsletter-form input:focus{ outline:none; border-color:var(--rose); }
+.newsletter-note{
+  flex-basis:100%;
+  font-size:.85rem;
+  color:var(--rose);
+  opacity:0;
+  transition:opacity .4s ease;
+  margin:0;
+}
+.newsletter-note.is-visible{ opacity:1; }
+
+@media(min-width:900px){
+  .newsletter-inner{ flex-direction:row; justify-content:space-between; align-items:center; }
+  .newsletter-form{ flex:0 0 auto; }
+}
+
+.site-footer{ background:var(--cream); }
+.footer-main{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:clamp(3rem,6vw,4.5rem) clamp(1.25rem,5vw,4rem) 1rem;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:2.25rem;
+  text-align:center;
+  align-items:start;
+}
+.footer-stamp{ display:flex; justify-content:center; color:var(--ink); opacity:.85; }
+.footer-stamp svg text{ font-family:var(--font-body); }
+.footer-col h3{
+  font-size:.75rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--rose-deep);
+  margin-bottom:1rem;
+}
+.footer-col p, .footer-col a{ font-size:.98rem; line-height:1.8; color:var(--ink); opacity:.85; }
+.footer-col ul{ display:flex; flex-direction:column; gap:.5rem; }
+.footer-col a:hover{ opacity:1; color:var(--rose-deep); }
+
+@media(min-width:820px){
+  .footer-main{ grid-template-columns:repeat(5,1fr); text-align:left; }
+  .footer-stamp{ justify-content:flex-start; }
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(74,53,48,.12);
+  max-width:var(--container);
+  margin:0 auto;
+  padding:1.5rem clamp(1.25rem,5vw,4rem) 2.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  font-size:.8rem;
+  color:var(--ink);
+  opacity:.8;
+}
+.footer-bottom-links{ display:flex; flex-wrap:wrap; gap:1.25rem; }
+.footer-bottom-links a:hover{ color:var(--rose-deep); }
+
+@media(min-width:820px){
+  .footer-bottom{ flex-direction:row; align-items:center; justify-content:space-between; }
+}
+
+/* ---------- cookie banner ---------- */
+.cookie-banner{
+  position:fixed;
+  left:16px; bottom:16px;
+  z-index:90;
+  max-width:min(92vw,340px);
+  background:var(--white);
+  border-radius:6px;
+  padding:1.1rem 1.2rem;
+  box-shadow:0 20px 45px rgba(42,29,22,.18);
+  display:flex;
+  flex-direction:column;
+  gap:.8rem;
+  transform:translateY(140%);
+  transition:transform .6s var(--ease);
+}
+.cookie-banner.is-visible{ transform:translateY(0); }
+.cookie-banner p{ font-size:.85rem; line-height:1.5; }
+.cookie-banner .btn-rect{ align-self:flex-start; }
+
+/* ---------- custom cursor dot ---------- */
+.cursor-dot{
+  position:fixed;
+  z-index:100;
+  width:8px; height:8px;
+  border-radius:50%;
+  background:var(--rose-deep);
+  pointer-events:none;
+  opacity:0;
+  transform:translate(-50%,-50%);
+  transition:opacity .3s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  .cursor-dot.is-active{ opacity:.9; }
+}
+
+/* ---------- page « nos espaces » (destination du CTA restaurant) ---------- */
+.espaces-back{ justify-self:start; }
+.espaces-main{
+  padding:calc(74px + clamp(3rem,7vw,5rem)) clamp(1.25rem,6vw,4rem) clamp(5rem,9vw,7rem);
+  max-width:80rem;
+  margin:0 auto;
+  background:var(--cream);
+}
+.espaces-title{
+  text-align:center;
+  font-family:var(--font-display);
+  font-weight:500;
+  text-transform:uppercase;
+  color:var(--ink);
+  font-size:clamp(48px,7vw,100px);
+  margin:.5rem 0 clamp(3rem,7vw,5rem);
+}
+.espaces-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:3rem;
+}
+.espaces-photo{ width:100%; aspect-ratio:.9; overflow:hidden; }
+.espaces-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.espaces-card-title{
+  margin-top:1.25rem;
+  font-family:var(--font-display);
+  font-weight:500;
+  text-transform:uppercase;
+  color:var(--ink);
+  font-size:1.6rem;
+}
+.espaces-card p{
+  margin-top:.6rem;
+  font-family:var(--font-body);
+  color:var(--ink);
+  line-height:1.6;
+}
+.espaces-footer{
+  padding:2.5rem clamp(1.25rem,6vw,4rem) 3rem;
+  text-align:center;
+  background:var(--cream);
+  color:rgba(74,53,48,.75);
+  font-family:var(--font-body);
+  font-size:.85rem;
+}
+.espaces-footer a{ display:inline-block; margin-top:.6rem; color:var(--ink); text-decoration:underline; }
+
+@media(min-width:800px){
+  .espaces-grid{ grid-template-columns:repeat(3,1fr); gap:2rem; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .hero-slide, .hero-title-line, .reveal-up, .slide-in-left, .slide-in-right, .fade-in, .rise-in,
+  .script-accent.reveal-word, .main-nav, .main-nav li, .spa-arch img,
+  .btn-rect, .btn-white, .rooms-slide, .rooms-caption, .rooms-btn,
+  img[data-parallax-y], img[data-parallax-x], video[data-parallax-y], video[data-parallax-x]{
+    transition-duration:.01ms !important;
+    animation-duration:.01ms !important;
+  }
+}

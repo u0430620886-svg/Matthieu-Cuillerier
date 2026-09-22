@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Château de la Roseraie — Domaine de luxe</title>
+<meta name="description" content="Château de la Roseraie, domaine de luxe : suites raffinées, gastronomie de saison, spa et jardins foisonnants.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<!-- fixed layer behind everything; its color is driven by scroll (see script.js).
+     Kept as a direct child of body — NOT inside #colorFlow — so its z-index:-1
+     is evaluated in the root stacking context, below the hero (z-index:1)
+     rather than trapped inside colorFlow's own (z-index:2) context. -->
+<div class="bg-tint" id="bgTint" aria-hidden="true"></div>
+
+<!-- ===== HEADER BLANC FIXE ===== -->
+<header class="site-header" id="siteHeader">
+  <button class="btn-rect btn-menu" id="menuToggle" aria-expanded="false" aria-controls="mainNav">
+    <span>Menu</span>
+  </button>
+
+  <a href="#hero" class="logo">
+    <span class="logo-name">Château</span>
+    <span class="logo-script">de la Roseraie</span>
+  </a>
+
+  <a href="#contact" class="btn-rect btn-reserve">Réserver</a>
+</header>
+
+<nav class="main-nav" id="mainNav" aria-hidden="true">
+  <ul>
+    <li style="--i:0"><a href="#manifesto">Le domaine</a></li>
+    <li style="--i:1"><a href="#suites">Suites</a></li>
+    <li style="--i:2"><a href="#gastronomie">Gastronomie</a></li>
+    <li style="--i:3"><a href="#experiences">Expériences</a></li>
+    <li style="--i:4"><a href="#spa">Spa &amp; Bien-être</a></li>
+    <li style="--i:5"><a href="#social">Instagram</a></li>
+    <li style="--i:6"><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="main-nav-foot">
+    <p>Domaine de la Roseraie<br>France</p>
+  </div>
+</nav>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+
+  <!-- ===== 1. HERO PLEIN ÉCRAN ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-media">
+      <div class="hero-slide is-active">
+        <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero-6-table.jpg">
+          <source src="assets/video/hero-table.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-slide">
+        <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero-7-passage.jpg">
+          <source src="assets/video/hero-passage.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero-slide">
+        <video autoplay muted loop playsinline preload="auto" poster="assets/images/hero-5-garden.jpg">
+          <source src="assets/video/hero-garden.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="hero-veil"></div>
+
+    <a class="side-label side-label--left" href="#gastronomie">
+      <span class="side-arrow">&larr;</span>
+      <span class="side-text">Gastronomie</span>
+    </a>
+    <a class="side-label side-label--right" href="#spa">
+      <span class="side-text">Bien-être</span>
+      <span class="side-arrow">&rarr;</span>
+    </a>
+
+    <div class="hero-content">
+      <h1 class="hero-title" id="heroTitle">
+        <span class="hero-title-line is-active">Séjour</span>
+        <span class="hero-title-line">Gastronomie</span>
+        <span class="hero-title-line">Bien-être</span>
+      </h1>
+      <a href="#suites" class="btn-white hero-cta">Découvrez nos chambres</a>
+    </div>
+
+    <div class="hero-caption" id="heroCaption">
+      <span class="hero-caption-line is-active">Chaque lieu a son propre rythme.</span>
+      <span class="hero-caption-line">Une symphonie de couleurs et de souvenirs.</span>
+      <span class="hero-caption-line">Le calme d'une oasis secrète.</span>
+      <span class="hero-caption-line">Un art de vivre, tout simplement.</span>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+  <div id="colorFlow">
+
+    <!-- ===== 2. MANIFESTE ROSE PLEINE PAGE — plan 1 ===== -->
+    <section class="manifesto" id="manifesto">
+      <p class="manifesto-eyebrow" id="manifestoEyebrow">Bienvenue au Château</p>
+
+      <div class="manifesto-titles" id="manifestoTitles">
+        <p class="manifesto-title manifesto-title--ghost" aria-hidden="true">
+          <span class="title-line line-1">Un souffle</span>
+          <span class="title-line line-2">de joie au</span>
+          <span class="title-line line-3">cœur de France</span>
+        </p>
+        <h2 class="manifesto-title manifesto-title--front">
+          <span class="title-line line-1">Un souffle</span>
+          <span class="title-line line-2">de joie au</span>
+          <span class="title-line line-3">cœur de France</span>
+        </h2>
+      </div>
+
+      <span class="coeur-mark">
+        <span class="coeur-dot" aria-hidden="true"></span>
+        <span class="script-accent script-accent--coeur">cœur</span>
+      </span>
+
+      <!-- .manifesto-lower : le paragraphe est l'UNIQUE contenu en flux normal ;
+           les deux photos sont en absolu ANCRÉES SUR CE MÊME wrapper, donc
+           leur "top" est mathématiquement exact par rapport au paragraphe —
+           plus besoin de deviner un décalage vh/px entre deux sections. -->
+      <div class="manifesto-lower" id="transition">
+        <figure class="transition-photo transition-photo--a">
+          <img src="assets/images/hero-primary-chateau.jpg" alt="Le Château de la Roseraie et ses jardins fleuris" loading="lazy">
+        </figure>
+        <p class="manifesto-copy">Entre pierres anciennes et jardins foisonnants, le Château de la Roseraie cultive un art de recevoir simple et généreux. Un lieu vivant, élégant et ouvert sur la nature, où l'on retrouve le charme d'une demeure habitée. Ici, le luxe se révèle dans les détails, la douceur des jardins, la lumière des salons et le calme de la campagne. Une maison pensée pour ralentir, se retrouver et savourer pleinement chaque instant. Chaque saison y dessine un nouveau visage : les roses de juin, les lumières dorées de septembre, le silence feutré de l'hiver sous les grands arbres du parc. On y vient pour une nuit, on y reste pour se retrouver. Le service, discret et attentif, veille sur chaque instant sans jamais se faire remarquer. C'est ici, entre pierre et verdure, loin du bruit du monde, que naît une certaine idée du repos et de l'art de vivre à la française.</p>
+        <figure class="transition-photo transition-photo--b">
+          <img src="assets/images/hero-secondary-door.jpg" alt="Porte ancienne du domaine, vert sauge" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== 4. CHAMBRES & SUITES — composition éditoriale, un seul emplacement photo (slideshow) ===== -->
+    <section class="rooms-editorial" id="suites">
+      <p class="rooms-kicker">Chambres &amp; Suites</p>
+
+      <div class="rooms-composition">
+        <div class="rooms-title-row">
+          <h2 class="rooms-headline rooms-headline--top">Une autre</h2>
+          <span class="script-accent rooms-idea">idée</span>
+        </div>
+
+        <div class="rooms-body">
+          <div class="rooms-visual-wrap">
+          <div class="rooms-frame">
+            <figure class="rooms-visual">
+              <img class="rooms-slide" alt="">
+              <img class="rooms-slide" alt="">
+              <span class="rooms-headline rooms-word-du" aria-hidden="true">Du</span>
+            </figure>
+
+            <svg class="rooms-signature" viewBox="0 0 150 230" aria-hidden="true">
+              <!-- deux tourelles : petite devant à gauche, grande derrière à droite -->
+              <path d="M18 185 L18 95 L46 95 L46 185 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M40 185 L40 75 L84 75 L84 185 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <!-- toitures coniques + traits de couverture -->
+              <path d="M18 95 L32 50 L46 95 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M32 50 L24 95 M32 50 L40 95" stroke="currentColor" stroke-width=".8"/>
+              <path d="M40 75 L62 15 L84 75 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M62 15 L50 75 M62 15 L74 75 M62 15 L57 75 M62 15 L67 75" stroke="currentColor" stroke-width=".7"/>
+              <!-- croix au sommet des flèches -->
+              <path d="M32 50 L32 39 M29 43 L35 43" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M62 15 L62 3 M58 7 L66 7" stroke="currentColor" stroke-width="1.3"/>
+              <!-- appareillage de pierre, assises horizontales -->
+              <path d="M18 115 L46 115 M18 135 L46 135 M18 155 L46 155 M18 170 L46 170" stroke="currentColor" stroke-width=".6"/>
+              <path d="M40 95 L84 95 M40 115 L84 115 M40 135 L84 135 M40 155 L84 155 M40 170 L84 170" stroke="currentColor" stroke-width=".6"/>
+              <!-- fenêtres en arc -->
+              <path d="M28 128 C28 121, 36 121, 36 128 L36 145 L28 145 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+              <path d="M56 100 C56 92, 68 92, 68 100 L68 122 L56 122 Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+              <path d="M62 100 L62 122" stroke="currentColor" stroke-width=".6"/>
+              <!-- porte en plein cintre -->
+              <path d="M56 150 C56 138, 68 138, 68 150 L68 185 L56 185 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M62 138 L62 185" stroke="currentColor" stroke-width=".6"/>
+
+              <!-- guirlande de roses et feuillage à la base des tourelles, sur toute la largeur -->
+              <g stroke="currentColor" stroke-width="1.2" fill="none">
+                <circle cx="10" cy="188" r="9"/><circle cx="10" cy="188" r="4"/>
+                <circle cx="28" cy="196" r="5.5"/><circle cx="28" cy="196" r="2.2"/>
+                <circle cx="63" cy="193" r="6.5"/><circle cx="63" cy="193" r="2.8"/>
+                <circle cx="90" cy="190" r="7.5"/><circle cx="90" cy="190" r="3.2"/>
+                <circle cx="108" cy="197" r="5"/><circle cx="108" cy="197" r="2"/>
+                <circle cx="128" cy="190" r="8.5"/><circle cx="128" cy="190" r="3.6"/>
+                <circle cx="140" cy="200" r="4.5"/><circle cx="140" cy="200" r="1.8"/>
+              </g>
+              <g stroke="currentColor" stroke-width=".9" fill="none">
+                <path d="M18 190 C13 197, 6 200, 0 199"/>
+                <path d="M38 199 C34 205, 27 207, 20 205"/>
+                <path d="M72 198 C68 204, 60 206, 53 204"/>
+                <path d="M98 194 C94 200, 86 203, 79 201"/>
+                <path d="M118 198 C114 204, 106 206, 99 204"/>
+                <path d="M136 205 C132 210, 125 212, 118 210"/>
+              </g>
+              <!-- feuilles -->
+              <g stroke="currentColor" stroke-width=".9" fill="none">
+                <path d="M4 196 C7 192, 12 193, 13 197 C10 201, 5 200, 4 196 Z"/>
+                <path d="M46 202 C49 198, 54 199, 55 203 C52 207, 47 206, 46 202 Z"/>
+                <path d="M80 200 C83 196, 88 197, 89 201 C86 205, 81 204, 80 200 Z"/>
+                <path d="M116 202 C119 198, 124 199, 125 203 C122 207, 117 206, 116 202 Z"/>
+                <path d="M100 188 C103 184, 108 185, 109 189 C106 193, 101 192, 100 188 Z"/>
+                <path d="M52 186 C55 182, 60 183, 61 187 C58 191, 53 190, 52 186 Z"/>
+              </g>
+
+              <!-- clé ancienne, ornée, en diagonale sous la guirlande -->
+              <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none">
+                <circle cx="20" cy="210" r="13"/>
+                <circle cx="20" cy="210" r="5.5"/>
+                <path d="M20 197 C24 200, 24 206, 20 210 C16 206, 16 200, 20 197 Z" stroke-width="1"/>
+                <line x1="31" y1="217" x2="128" y2="223"/>
+                <line x1="70" y1="219" x2="70" y2="227"/>
+                <line x1="90" y1="220" x2="90" y2="230"/>
+                <line x1="110" y1="222" x2="115" y2="230"/>
+                <line x1="120" y1="222" x2="127" y2="228"/>
+              </g>
+            </svg>
+          </div>
+
+            <p class="rooms-caption" id="roomsCaption">Chambre Roseraie</p>
+          </div>
+
+          <div class="rooms-side">
+            <div class="rooms-right-content">
+              <span class="rooms-headline rooms-word-luxe">Luxe</span>
+
+              <div class="rooms-copy">
+                <p>Entre chambres de caractère et suites ouvertes sur les jardins, le Château de la Roseraie cultive un luxe intime et lumineux. Matières naturelles, détails anciens et vues sur le parc composent des espaces pensés pour ralentir et se retrouver.</p>
+                <a href="#contact" class="rooms-btn">Voir nos chambres</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4bis. RESPIRATION PHOTOGRAPHIQUE — jardin plein écran + portrait cintré ===== -->
+    <section class="garden-feature" id="jardin">
+      <img class="garden-feature-bg" src="assets/images/garden-feature-bg.jpg" alt="Jardin fleuri et ensoleillé du Château de la Roseraie" loading="lazy">
+      <div class="garden-feature-portrait">
+        <img src="assets/images/garden-feature-portrait.jpg" alt="Promenade avec le chien dans les jardins du Château de la Roseraie" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ===== 5. RESTAURANT CORAIL — composition typographique monumentale ===== -->
+    <section class="restaurant" id="gastronomie">
+      <div class="restaurant-l">
+        <p class="eyebrow eyebrow--center restaurant-eyebrow reveal-up">Gastronomie</p>
+
+        <h2 class="restaurant-title">
+          <span class="restaurant-title-line restaurant-title-line--1">Le plaisir</span>
+          <span class="restaurant-title-line restaurant-title-line--2">n'est pas</span>
+        </h2>
+
+        <figure class="restaurant-photo">
+          <img src="assets/images/restaurant-interior.jpg" alt="Salle du restaurant du domaine, ambiance chaleureuse et colorée" loading="lazy">
+        </figure>
+        <span class="script-accent restaurant-photo-caption" aria-hidden="true">Restaurant</span>
+
+        <span class="restaurant-title-line restaurant-title-line--3">Un détail</span>
+
+        <div class="restaurant-copy">
+          <p>Du petit matin jusqu'à la nuit tombée, le Château de la Roseraie se vit en plusieurs temps. Un café sur la terrasse, un déjeuner léger au jardin, un verre dans les salons, puis un dîner sous les lumières du château. Chaque espace possède son rythme, sa lumière et son atmosphère. Une cuisine de saison, simple et généreuse, pensée comme une prolongation naturelle du domaine.</p>
+          <a href="espaces.html" class="btn-white restaurant-cta">Voir nos espaces</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. CAFÉ + BAR — deux grandes photos verticales, léger chevauchement ===== -->
+    <section class="cafe" id="cafe">
+      <div class="cafe-block rise-in">
+        <figure class="cafe-cafe-photo">
+          <img src="assets/images/chateau-table-soiree.jpg" alt="Table dressée en soirée, verre à vin et orchidée" loading="lazy">
+        </figure>
+        <span class="script-accent cafe-caption-cafe reveal-word">Détails</span>
+
+        <figure class="cafe-bar">
+          <img src="assets/images/chateau-salon-vert.jpg" alt="Le Salon des Roses, bar du château aux boiseries et murs verts" loading="lazy">
+        </figure>
+        <span class="script-accent script-accent--cafe reveal-word">Le Salon des Roses</span>
+      </div>
+    </section>
+
+    <!-- ===== 7. EXPÉRIENCES CRÈME ===== -->
+    <section class="experiences" id="experiences">
+      <p class="eyebrow reveal-up">Expériences</p>
+
+      <div class="exp-title-block rise-in">
+        <span class="exp-word exp-word--1">Un</span>
+        <span class="exp-word exp-word--2">rythme,</span>
+        <figure class="exp-word-photo">
+          <img src="assets/images/hero-primary-chateau.jpg" alt="Le Château de la Roseraie en été, façade et jardin fleuri sous le soleil" loading="lazy" data-parallax-y="-20">
+        </figure>
+        <span class="exp-word exp-word--3">le</span>
+        <span class="exp-word exp-word--4">plaisir</span>
+
+        <p class="exp-copy reveal-up">Ici, le temps semble ralentir. Entre les jardins baignés de lumière, les salons du château et les longues soirées d'été, chaque moment suit son propre rythme. On déambule dans le domaine, on s'arrête à l'ombre des arbres, on partage un déjeuner en terrasse avant de retrouver la douceur des jardins. Un lieu vivant, élégant et généreux, pensé pour profiter pleinement des beaux jours et créer des souvenirs qui restent.</p>
+      </div>
+
+      <!-- ===== 8. MOSAÏQUE ===== -->
+      <div class="exp-mosaic">
+        <figure class="mosaic-a rise-in"><img src="assets/images/exp-ascenseur-luxe.jpg" alt="Ascenseur d'époque du château, boiseries et dorures Art déco" loading="lazy"></figure>
+        <figure class="mosaic-b rise-in"><img src="assets/images/chateau-lustre-luxe.jpg" alt="Lustre en argent du château, plafond peint et salle à manger reflétée" loading="lazy" data-parallax-x="18"></figure>
+        <figure class="mosaic-c rise-in"><img src="assets/images/chateau-salon-anglais.jpg" alt="Salon du château, boiseries et tapisseries vertes" loading="lazy" data-parallax-y="-12"></figure>
+      </div>
+    </section>
+  </div> <!-- /colorFlow -->
+
+  <!-- ===== 9. SPA ARCHÉ ===== -->
+  <section class="spa" id="spa">
+    <div class="spa-bg">
+      <img src="assets/images/spa-hallway.jpg" alt="Intérieur du spa, fauteuil et papier peint végétal" loading="lazy">
+    </div>
+    <p class="eyebrow reveal-up">Spa &amp; Bien-être</p>
+    <figure class="spa-arch reveal-up">
+      <img src="assets/images/spa-pool.jpg" alt="Corps flottant dans l'eau verte, vue de dessus" loading="lazy">
+    </figure>
+    <p class="lede lede--light reveal-up">Un sanctuaire de calme où chaque soin devient un rituel, dans une lumière douce pensée pour ralentir le temps.</p>
+  </section>
+
+  <!-- ===== 10. INSTAGRAM DORÉ — collage éditorial asymétrique ===== -->
+  <section class="social" id="social">
+    <p class="social-handle">@chateaudelaroseraie</p>
+    <h2 class="social-word social-word--suivez">Suivez</h2>
+
+    <figure class="social-photo social-photo--1" data-parallax-x="-55">
+      <img src="assets/images/hero-primary-garden.jpg" alt="Instant de vie estival au Château de la Roseraie" loading="lazy">
+    </figure>
+    <figure class="social-photo social-photo--2" data-parallax-x="40">
+      <img src="assets/images/hero-primary-chateau.jpg" alt="Façade du Château de la Roseraie en été" loading="lazy">
+    </figure>
+    <figure class="social-photo social-photo--3" data-parallax-x="-70">
+      <img src="assets/images/garden-feature-bg.jpg" alt="Terrasse et jardin fleuri du domaine" loading="lazy">
+    </figure>
+    <figure class="social-photo social-photo--4" data-parallax-x="50">
+      <img src="assets/images/instagram-1.jpg" alt="Nature morte élégante, tulipes et thé au château" loading="lazy">
+    </figure>
+    <figure class="social-photo social-photo--5" data-parallax-x="-45">
+      <img src="assets/images/chateau-salon-cheminee.jpg" alt="Salon du château, cheminée dorée et fauteuils fleuris" loading="lazy">
+    </figure>
+
+    <h2 class="social-word social-word--nous">Nous</h2>
+
+    <span class="script-accent social-insta">Instagram</span>
+  </section>
+
+  <!-- ===== 11. CTA ===== -->
+  <section class="cta" id="cta">
+    <h2 class="cta-title reveal-up">Votre</h2>
+    <span class="script-accent script-accent--sejour reveal-word">séjour</span>
+    <a href="#contact" class="btn-white cta-btn">Réservez maintenant</a>
+
+    <svg class="cta-logo" viewBox="0 0 150 230" aria-hidden="true">
+      <path d="M18 185 L18 95 L46 95 L46 185 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M40 185 L40 75 L84 75 L84 185 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M18 95 L32 50 L46 95 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M32 50 L24 95 M32 50 L40 95" stroke="currentColor" stroke-width=".8"/>
+      <path d="M40 75 L62 15 L84 75 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M62 15 L50 75 M62 15 L74 75 M62 15 L57 75 M62 15 L67 75" stroke="currentColor" stroke-width=".7"/>
+      <path d="M32 50 L32 39 M29 43 L35 43" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M62 15 L62 3 M58 7 L66 7" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M18 115 L46 115 M18 135 L46 135 M18 155 L46 155 M18 170 L46 170" stroke="currentColor" stroke-width=".6"/>
+      <path d="M40 95 L84 95 M40 115 L84 115 M40 135 L84 135 M40 155 L84 155 M40 170 L84 170" stroke="currentColor" stroke-width=".6"/>
+      <path d="M28 128 C28 121, 36 121, 36 128 L36 145 L28 145 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M56 100 C56 92, 68 92, 68 100 L68 122 L56 122 Z" fill="none" stroke="currentColor" stroke-width="1.1"/>
+      <path d="M62 100 L62 122" stroke="currentColor" stroke-width=".6"/>
+      <path d="M56 150 C56 138, 68 138, 68 150 L68 185 L56 185 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M62 138 L62 185" stroke="currentColor" stroke-width=".6"/>
+      <g stroke="currentColor" stroke-width="1.2" fill="none">
+        <circle cx="10" cy="188" r="9"/><circle cx="10" cy="188" r="4"/>
+        <circle cx="28" cy="196" r="5.5"/><circle cx="28" cy="196" r="2.2"/>
+        <circle cx="63" cy="193" r="6.5"/><circle cx="63" cy="193" r="2.8"/>
+        <circle cx="90" cy="190" r="7.5"/><circle cx="90" cy="190" r="3.2"/>
+        <circle cx="108" cy="197" r="5"/><circle cx="108" cy="197" r="2"/>
+        <circle cx="128" cy="190" r="8.5"/><circle cx="128" cy="190" r="3.6"/>
+        <circle cx="140" cy="200" r="4.5"/><circle cx="140" cy="200" r="1.8"/>
+      </g>
+      <g stroke="currentColor" stroke-width=".9" fill="none">
+        <path d="M18 190 C13 197, 6 200, 0 199"/>
+        <path d="M38 199 C34 205, 27 207, 20 205"/>
+        <path d="M72 198 C68 204, 60 206, 53 204"/>
+        <path d="M98 194 C94 200, 86 203, 79 201"/>
+        <path d="M118 198 C114 204, 106 206, 99 204"/>
+        <path d="M136 205 C132 210, 125 212, 118 210"/>
+      </g>
+      <g stroke="currentColor" stroke-width=".9" fill="none">
+        <path d="M4 196 C7 192, 12 193, 13 197 C10 201, 5 200, 4 196 Z"/>
+        <path d="M46 202 C49 198, 54 199, 55 203 C52 207, 47 206, 46 202 Z"/>
+        <path d="M80 200 C83 196, 88 197, 89 201 C86 205, 81 204, 80 200 Z"/>
+        <path d="M116 202 C119 198, 124 199, 125 203 C122 207, 117 206, 116 202 Z"/>
+        <path d="M100 188 C103 184, 108 185, 109 189 C106 193, 101 192, 100 188 Z"/>
+        <path d="M52 186 C55 182, 60 183, 61 187 C58 191, 53 190, 52 186 Z"/>
+      </g>
+      <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none">
+        <circle cx="20" cy="210" r="13"/>
+        <circle cx="20" cy="210" r="5.5"/>
+        <path d="M20 197 C24 200, 24 206, 20 210 C16 206, 16 200, 20 197 Z" stroke-width="1"/>
+        <line x1="31" y1="217" x2="128" y2="223"/>
+        <line x1="70" y1="219" x2="70" y2="227"/>
+        <line x1="90" y1="220" x2="90" y2="230"/>
+        <line x1="110" y1="222" x2="115" y2="230"/>
+        <line x1="120" y1="222" x2="127" y2="228"/>
+      </g>
+    </svg>
+  </section>
+
+  <!-- ===== 12. NEWSLETTER + FOOTER ===== -->
+  <section class="newsletter" id="contact">
+    <div class="newsletter-bg">
+      <img src="assets/images/hero-4-terrace.jpg" alt="Terrasse du domaine à la tombée de la nuit" loading="lazy">
+    </div>
+    <div class="newsletter-inner">
+      <div class="newsletter-copy">
+        <h3 class="display-lg">Recevez les<br>dernières offres…</h3>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="text" name="name" placeholder="Votre nom" required autocomplete="name">
+        <input type="email" name="email" placeholder="Votre email" required autocomplete="email">
+        <button type="submit" class="btn-white">S'inscrire</button>
+        <p class="newsletter-note" id="newsletterNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-stamp" aria-hidden="true">
+      <svg viewBox="0 0 200 200" width="112" height="112">
+        <defs>
+          <path id="stampCircle" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"></path>
+        </defs>
+        <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="1"></circle>
+        <circle cx="100" cy="100" r="62" fill="none" stroke="currentColor" stroke-width="1"></circle>
+        <text font-size="11.5" letter-spacing="3.4" fill="currentColor">
+          <textPath href="#stampCircle" startOffset="2%">CHÂTEAU DE LA ROSERAIE · FRANCE · DEPUIS TOUJOURS ·</textPath>
+        </text>
+        <text x="100" y="106" text-anchor="middle" font-family="var(--font-script)" font-size="26" fill="currentColor">RdlR</text>
+      </svg>
+    </div>
+    <div class="footer-col">
+      <h3>Adresse</h3>
+      <p>1 Allée des Roseraies<br>France</p>
+    </div>
+    <div class="footer-col">
+      <h3>Contacts</h3>
+      <p><a href="#contact">bonjour@chateaudelaroseraie.fr</a><br>+33 1 00 00 00 00</p>
+    </div>
+    <div class="footer-col">
+      <h3>Liens</h3>
+      <ul>
+        <li><a href="#suites">Suites</a></li>
+        <li><a href="#gastronomie">Gastronomie</a></li>
+        <li><a href="#spa">Spa &amp; Bien-être</a></li>
+        <li><a href="#experiences">Expériences</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Social</h3>
+      <ul>
+        <li><a href="#social">Instagram</a></li>
+        <li><a href="#social">Facebook</a></li>
+        <li><a href="#social">Pinterest</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="year"></span> Château de la Roseraie. Tous droits réservés.</p>
+    <div class="footer-bottom-links">
+      <a href="#contact">Politique du domaine</a>
+      <a href="#contact">Confidentialité</a>
+      <a href="#contact">Cookies</a>
+      <a href="#contact">Mentions légales</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>Ce site utilise des cookies pour améliorer votre expérience.</p>
+  <button class="btn-rect" id="cookieAccept">J'accepte</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
